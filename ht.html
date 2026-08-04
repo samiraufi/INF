@@ -1,55 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML · professional</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0f4f9;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 2rem 1.5rem;
+      color: #1a2a3a;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page-wrap {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* top navigation bar */
+    .nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 0.6rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #1d3344;
+      transition: 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid transparent;
+    }
+
+    .nav-btn:hover {
+      background: #1d2e3f;
+      color: white;
+      border-color: #1d2e3f;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -8px rgba(20,40,60,0.15);
+    }
+
+    .nav-btn a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* main card */
+    .html-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 48px;
+      padding: 2.8rem 3rem;
+      box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.20),
+                  0 12px 28px -10px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #1a2e3f;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h3:first-of-type {
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #1f3a4b;
+      text-align: justify;
+    }
+
+    .tags {
+      background: rgba(30, 47, 63, 0.07);
+      padding: 0.1rem 0.5rem;
+      border-radius: 6px;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 0.9em;
+      color: #1a3a4f;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .img2 {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px -8px rgba(0,0,0,0.08);
+      margin: 1rem 0 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: block;
+    }
+
+    /* note box */
+    .note-box {
+      background: #f7f3e8;
+      border-left: 5px solid #d4a373;
+      padding: 1.2rem 1.8rem;
+      border-radius: 20px;
+      margin: 1.5rem 0;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .note-box p {
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+
+    .note-box b {
+      color: #a1621a;
+    }
+
+    /* responsive */
+    @media (max-width: 680px) {
+      .html-card { padding: 1.8rem 1.2rem; }
+      h3 { font-size: 1.3rem; }
+      .nav-bar { padding: 0.4rem 0.8rem; border-radius: 40px; }
+      .nav-btn { padding: 0.3rem 1rem; font-size: 0.85rem; }
+    }
+
+    /* keep original classes */
+  </style>
 </head>
-<body style="font-family: sans-serif;">
-    <header>
-                    <div class="tab">
-                <button><a href="index.html">Home</a></button>
-                <button><a href="ht_advanced.html">HTML_Advanced</a></button>
-            
-            </div>
-    </header>
-    <main>
-        <section >
-      <h3 style="text-align: start;">What is html ?</h3>
-      <p style="text-align: justify;">HTML (HyperText Markup Language) is the standard markup language used to create and structure the content of web pages. It is the most basic building block of the World Wide Web, serving as the "skeleton" or framework that holds everything together</p>
-            
-            <img src="./html.png" alt="">
-        <h3 style="text-align: start;">A Simple HTML Document</h3>
-        <img src="./html_codes.png" alt="" class="img2">
-        <h3 style="text-align: start;">Example Explained:</h3>
-        <p style="text-align: justify;">
-The <span  class="tags">&lt;!DOCTYPE html&gt;</span> declaration defines that this document is an HTML5 document. <br>
+<body>
 
-The  <span  class="tags"> &lt;html&gt; </span> element is the root element of an HTML page<br>
+<div class="page-wrap">
+  <!-- navigation – original buttons preserved -->
+  <div class="nav-bar">
+    <button class="nav-btn"><a href="index.html">Home</a></button>
+    <button class="nav-btn"><a href="ht_advanced.html">HTML_Advanced</a></button>
+  </div>
 
-The <span  class="tags">&lt;head&gt; </span> element contains meta information about the HTML page <br>
-The <span  class="tags">&lt;title&gt; </span>element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab) <br>
-The <span  class="tags">&lt;body&gt; </span>element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc. <br>
-The <span  class="tags">&lt;h1&gt; </span>element defines a large heading <br>
-The <span  class="tags">&lt;p&gt; </span>element defines a paragraph
-        </p>
-        <h3 class="head3">What is an HTML Element?</h3>
-        <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
-        <img src="./html_codes2.png" alt="" class="img2">
-        <div style="background-color:#ffffcc;">
-            <p style="text-align: justify;"><b>Note:</b> Some HTML elements have no content (like the <br> element). These elements are called empty elements. Empty elements do not have an end tag!</p>
-        </div>
-        <h3 class="head3">Web Browsers</h3>
-        <p style="text-align: justify;">The purpose of a web browser (Chrome, Edge, Firefox, Safari) is to read HTML documents and display them correctly.</p>
+  <main class="html-card">
+    <h3>What is html ?</h3>
+    <p>
+      HTML (HyperText Markup Language) is the standard markup language used to create and structure the content of web pages. It is the most basic building block of the World Wide Web, serving as the "skeleton" or framework that holds everything together.
+    </p>
 
-        <p style="text-align: justify;">A browser does not display the HTML tags, but uses them to determine how to display the document:</p>
-        <img src="https://www.w3schools.com/html/img_chrome.png" class="img2" alt="">
+    <img src="./html.png" alt="HTML logo" class="img2" style="max-width:280px;" />
 
-    </section>
-   
+    <h3>A Simple HTML Document</h3>
+    <img src="./html_codes.png" alt="HTML code example" class="img2" />
 
-        <section>  <script src="script.js"></script></section>
-    </main>
+    <h3>Example Explained:</h3>
+    <p>
+      The <span class="tags">&lt;!DOCTYPE html&gt;</span> declaration defines that this document is an HTML5 document. <br />
+      The <span class="tags">&lt;html&gt;</span> element is the root element of an HTML page.<br />
+      The <span class="tags">&lt;head&gt;</span> element contains meta information about the HTML page.<br />
+      The <span class="tags">&lt;title&gt;</span> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).<br />
+      The <span class="tags">&lt;body&gt;</span> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.<br />
+      The <span class="tags">&lt;h1&gt;</span> element defines a large heading.<br />
+      The <span class="tags">&lt;p&gt;</span> element defines a paragraph.
+    </p>
+
+    <h3>What is an HTML Element?</h3>
+    <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
+    <img src="./html_codes2.png" alt="HTML element diagram" class="img2" />
+
+    <div class="note-box">
+      <p><b>Note:</b> Some HTML elements have no content (like the &lt;br&gt; element). These elements are called empty elements. Empty elements do not have an end tag!</p>
+    </div>
+
+    <h3>Web Browsers</h3>
+    <p>The purpose of a web browser (Chrome, Edge, Firefox, Safari) is to read HTML documents and display them correctly.</p>
+    <p>A browser does not display the HTML tags, but uses them to determine how to display the document:</p>
+    <img src="https://www.w3schools.com/html/img_chrome.png" class="img2" alt="Browser rendering example" style="max-width:500px;" />
+
+    <!-- script kept as original -->
+    <section><script src="script.js"></script></section>
+  </main>
+</div>
+
 </body>
 </html>

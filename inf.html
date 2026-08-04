@@ -1,42 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INF · Intelligence & Genius</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <style>
+        /* reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1a2a3a;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* back / home button */
+        .top-nav {
+            margin-bottom: 2rem;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 0.5rem 1.6rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            text-decoration: none;
+            font-weight: 500;
+            color: #1d3344;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .home-btn:hover {
+            background: #1d2e3f;
+            color: white;
+            border-color: #1d2e3f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(20,40,60,0.2);
+        }
+
+        /* main card */
+        .inf-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 48px;
+            padding: 2.8rem 3rem;
+            box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.20),
+                        0 12px 28px -10px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1a2e3f;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h3:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #1f3a4b;
+            text-align: justify;
+        }
+
+        .label-accent {
+            color: #c45d09;
+            font-weight: 600;
+        }
+
+        .highlight-blue {
+            color: #1560db;
+            font-weight: 600;
+        }
+
+        /* feature boxes for genius points */
+        .genius-box {
+            background: #9a8613c2;
+            padding: 0.8rem 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 0.8rem;
+            color: #1a1f1a;
+            font-weight: 500;
+            backdrop-filter: blur(2px);
+            border-left: 4px solid #6b5c0a;
+        }
+
+        .genius-box p {
+            margin-bottom: 0;
+            color: #1a1f1a;
+            text-align: justify;
+        }
+
+        .genius-box strong {
+            color: #2d2600;
+        }
+
+        /* detail link */
+        .detail-link {
+            display: inline-block;
+            background: rgba(30, 47, 63, 0.06);
+            padding: 0.4rem 1.8rem;
+            border-radius: 60px;
+            border: 1px solid rgba(30, 47, 63, 0.1);
+            font-weight: 500;
+            transition: 0.2s;
+            text-decoration: none;
+            color: #1d3344;
+            margin-top: 0.2rem;
+        }
+
+        .detail-link:hover {
+            background: #1d2e3f;
+            color: white;
+            border-color: #1d2e3f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px -8px rgba(20,40,60,0.15);
+        }
+
+        /* responsive */
+        @media (max-width: 680px) {
+            .inf-card { padding: 1.8rem 1.2rem; }
+            h3 { font-size: 1.3rem; }
+            .home-btn { padding: 0.4rem 1.2rem; font-size: 0.9rem; }
+            .genius-box { padding: 0.6rem 1rem; }
+        }
+
+        /* preserve original classes */
+    </style>
 </head>
-<body style="font-family: sans-serif;">
-    <header>
-                    <div class="tab">
-                <button><a href="index.html">Home</a></button>
-            
-            </div>
-    </header>
-    <main>
-        <section>
-            <h3 style="text-align: start;">What is Intelligence?</h3>
-            <p style="text-align: justify;">Intelligence is the ability to acquire and apply knowledge and skills. It encompasses various cognitive processes such as learning, reasoning, problem-solving, and decision-making. Intelligence can be measured through various tests and assessments, and it can manifest in different forms, including emotional intelligence, social intelligence, and practical intelligence.</p>
-            <p style="color: #c45d09;"><b>Psychologists and researchers divide intelligence into several core components:</b></p>
-            <p><b style="color: #1560db;">Learning & Memory: </b>The ability to acquire, retain, and recall information from past experiences.</p>
-            <p><b style="color: #1560db;">Reasoning & Problem-Solving:  </b>Using logic to analyze situations, form strategies, and overcome obstacles.</p>
-            <p><b style="color: #1560db;">Adaptability:  </b>The capacity to adjust to unfamiliar contexts and apply existing knowledge to new situations.</p>
-            <p><b style="color: #1560db;">Abstract Thinking:   </b>The ability to understand complex concepts, symbols, and ideas that are not physically present.</p> </br>
+<body>
 
-            <h3 style="text-align: start;">What is Genius?</h3>
-            <p style="text-align: justify;">Genius refers to an exceptional level of creative or intellectual ability that goes far beyond normal standards, leading to groundbreaking innovations or masterpieces.
-                Rather than just raw intelligence, it is defined by profound originality, intense drive, and the capacity to change how we understand the world.
-            </p>
-            <p style="text-align: start;background-color: #f0f0f0;"><b>Key aspects of genius include:</b></p>
-            <p style="text-align: justify;background-color: #9a8613c2;"><b>Originality over Aptitude:</b>While talent means learning a skill quickly, genius involves creating something entirely new, answering questions no one else has considered, or establishing new standards.</p>
-            <p style="text-align: justify;background-color: #9a8613c2;"><b>Major Contributions:</b>Psychologists often define a genius by their lasting legacy—making unique contributions that change a culturally valued domain like science, art, or mathematics.</p>
-            <p style="text-align: justify;background-color: #9a8613c2;"><b>The IQ Factor:</b>Historically, psychologists associated genius with an IQ Score of 140 or higher, placing individuals in the top 1% of the population. However, many experts agree that high persistence, creativity, and unconventional thinking are equally—if not more—important than test scores.</p>
-            <p><a href="https://en.wikipedia.org/wiki/Genius">more details</a></p>
+<div class="page-wrap">
+    <!-- home button – original structure preserved -->
+    <div class="top-nav">
+        <a href="index.html" class="home-btn">← Home</a>
+    </div>
 
-        </section>
-   
+    <main class="inf-card">
+        <!-- INTELLIGENCE -->
+        <h3>What is Intelligence?</h3>
+        <p>
+            Intelligence is the ability to acquire and apply knowledge and skills. It encompasses various cognitive processes such as learning, reasoning, problem-solving, and decision-making. Intelligence can be measured through various tests and assessments, and it can manifest in different forms, including emotional intelligence, social intelligence, and practical intelligence.
+        </p>
 
-        <section>  <script src="script.js"></script></section>
+        <p class="label-accent">Psychologists and researchers divide intelligence into several core components:</p>
+
+        <p><span class="highlight-blue">Learning &amp; Memory:</span> The ability to acquire, retain, and recall information from past experiences.</p>
+        <p><span class="highlight-blue">Reasoning &amp; Problem-Solving:</span> Using logic to analyze situations, form strategies, and overcome obstacles.</p>
+        <p><span class="highlight-blue">Adaptability:</span> The capacity to adjust to unfamiliar contexts and apply existing knowledge to new situations.</p>
+        <p><span class="highlight-blue">Abstract Thinking:</span> The ability to understand complex concepts, symbols, and ideas that are not physically present.</p>
+
+        <!-- GENIUS -->
+        <h3>What is Genius?</h3>
+        <p>
+            Genius refers to an exceptional level of creative or intellectual ability that goes far beyond normal standards, leading to groundbreaking innovations or masterpieces.
+            Rather than just raw intelligence, it is defined by profound originality, intense drive, and the capacity to change how we understand the world.
+        </p>
+
+        <p style="background-color: #f0f0f0; padding: 0.4rem 1.2rem; border-radius: 12px; display: inline-block; font-weight: 600;">Key aspects of genius include:</p>
+
+        <div class="genius-box">
+            <p><strong>Originality over Aptitude:</strong> While talent means learning a skill quickly, genius involves creating something entirely new, answering questions no one else has considered, or establishing new standards.</p>
+        </div>
+        <div class="genius-box">
+            <p><strong>Major Contributions:</strong> Psychologists often define a genius by their lasting legacy—making unique contributions that change a culturally valued domain like science, art, or mathematics.</p>
+        </div>
+        <div class="genius-box">
+            <p><strong>The IQ Factor:</strong> Historically, psychologists associated genius with an IQ Score of 140 or higher, placing individuals in the top 1% of the population. However, many experts agree that high persistence, creativity, and unconventional thinking are equally—if not more—important than test scores.</p>
+        </div>
+
+        <p><a href="https://en.wikipedia.org/wiki/Genius" class="detail-link" target="_blank">more details →</a></p>
+
+        <!-- script kept as original -->
+        <section><script src="script.js"></script></section>
     </main>
+</div>
+
 </body>
 </html>

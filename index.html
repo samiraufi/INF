@@ -1,38 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INF</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INF · static professional</title>
+  <!-- Google Font & clean reset -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- global reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0f4f9;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+      color: #1a2a3a;
+    }
+
+    /* main card – glassmorphism + soft shadow */
+    .site-card {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 56px;
+      padding: 2.8rem 3rem;
+      box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.25),
+                  0 12px 28px -10px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.2s;
+    }
+
+    /* ----- navigation tabs ----- */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+      padding-bottom: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #2c4052;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(2px);
+      letter-spacing: -0.01em;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .tab-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0b1a26;
+      transform: scale(0.97);
+    }
+
+    .tab-btn.active {
+      background: #1d2e3f;
+      color: white;
+      box-shadow: 0 8px 20px -8px rgba(20, 40, 60, 0.3);
+    }
+
+    /* ----- tab content panels ----- */
+    .tab-panel {
+      display: none;
+      animation: fadeSlide 0.3s ease forwards;
+      padding: 0.2rem 0 0.8rem;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----- HOME panel ----- */
+    .home-headline {
+      font-size: 2.6rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1a2e3f, #2b4d64);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.25rem;
+    }
+
+    .home-sub {
+      font-size: 1.2rem;
+      color: #2d4a5e;
+      font-weight: 380;
+      padding-left: 1.2rem;
+      border-left: 4px solid #8bb4cc;
+      background: rgba(139, 180, 204, 0.08);
+      border-radius: 0 14px 14px 0;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+    }
+
+    /* link grid – professional cards */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .link-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 0.8rem 0.2rem 0.8rem 1.6rem;
+      transition: 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .link-card a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #1d3344;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      width: 100%;
+      padding: 0.4rem 0.6rem 0.4rem 0;
+      transition: 0.2s;
+      letter-spacing: -0.01em;
+    }
+
+    .link-card a::after {
+      content: "→";
+      margin-left: auto;
+      opacity: 0.3;
+      font-weight: 300;
+      transition: 0.2s;
+      padding-right: 0.6rem;
+    }
+
+    .link-card:hover {
+      background: #1d2e3f;
+      border-color: #1d2e3f;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px -12px rgba(20, 40, 60, 0.2);
+    }
+
+    .link-card:hover a {
+      color: white;
+    }
+
+    .link-card:hover a::after {
+      opacity: 1;
+      margin-left: 6px;
+    }
+
+    /* ----- ABOUT panel ----- */
+    .about-title {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #1a2e3f;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-message {
+      font-size: 1.3rem;
+      color: #1f3d52;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(2px);
+      padding: 1.2rem 2.2rem;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    /* ----- extra polish for static feel ----- */
+    .site-footer {
+      margin-top: 2.8rem;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      padding-top: 1.2rem;
+      font-size: 0.9rem;
+      color: #4a6378;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .site-footer span {
+      opacity: 0.6;
+    }
+
+    /* responsive */
+    @media (max-width: 680px) {
+      .site-card { padding: 1.8rem 1.2rem; }
+      .home-headline { font-size: 2rem; }
+      .tab-btn { padding: 0.4rem 1.2rem; font-size: 0.9rem; }
+      .link-grid { grid-template-columns: 1fr; }
+      .link-card { padding: 0.6rem 0.2rem 0.6rem 1.2rem; }
+      .about-message { font-size: 1rem; padding: 0.8rem 1.4rem; }
+    }
+
+    /* preserve all original IDs & classes – only enhanced */
+    .tabcontent { display: none; }  /* fallback */
+    .tabcontent.active { display: block; }
+  </style>
 </head>
 <body>
-    <main>
-      
-        <header>
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event,'Home')" id="defaultOpen">Home</button>
-                <button class="tablinks" onclick="openCity(event,'About')">About</button>
-            </div>
-            <div id="Home" class="tabcontent">
-                <h3>Welcome To Our Website!</h3>
-                <p>Our Website Focuses On simplicity and user friendly 😊!</p>
-                <br>
-                <h1><a href="chess.html">What is chess♟️?</a></h1>
-                <h1><a href="ht.html">What is html?</a></h1>
-                <h1><a href="inf.html">INF📄!</a></h1>
-                <h1><a href="plan.html">Plans💹!</a></h1>
-                <h1><a href="math.html">Math📕</a></h1>
 
-                
-            </div>
-            <div id="About" class="tabcontent">
-                <h3>About Us!</h3>
-                <p>Our Community Works Toward achieving Best Dreams!</p>
-            </div>
-        </header>
-        <section><script src="script.js"></script></section>
-    </main>
-    
+<div class="site-card">
+  <header>
+    <!-- tab navigation (exactly as original, but styled) -->
+    <div class="tab-nav">
+      <button class="tab-btn tablinks" onclick="openCity(event,'Home')" id="defaultOpen">Home</button>
+      <button class="tab-btn tablinks" onclick="openCity(event,'About')">About</button>
+    </div>
+
+    <!-- HOME tab content – all links preserved -->
+    <div id="Home" class="tab-panel tabcontent active">
+      <h3 class="home-headline">Welcome To Our Website!</h3>
+      <p class="home-sub">Our Website Focuses On simplicity and user friendly 😊!</p>
+      <br />
+      <div class="link-grid">
+        <div class="link-card"><a href="chess.html">What is chess♟️?</a></div>
+        <div class="link-card"><a href="ht.html">What is html?</a></div>
+        <div class="link-card"><a href="inf.html">INF📄!</a></div>
+        <div class="link-card"><a href="plan.html">Plans💹!</a></div>
+        <div class="link-card"><a href="math.html">Math📕</a></div>
+      </div>
+    </div>
+
+    <!-- ABOUT tab content -->
+    <div id="About" class="tab-panel tabcontent">
+      <h3 class="about-title">About Us!</h3>
+      <p class="about-message">Our Community Works Toward achieving Best Dreams!</p>
+    </div>
+  </header>
+
+  <!-- small footer to reinforce professional static look -->
+  <div class="site-footer">
+    <span>INF · static</span>
+    <span>✦ 2026</span>
+  </div>
+
+  <!-- script tag exactly as original – plus tiny enhancement for default tab -->
+  <section>
+    <script src="script.js"></script>
+  </section>
+</div>
+
+<!-- original script – unchanged logic, just a bit more robust -->
+<script>
+  // original openCity function (unchanged behaviour)
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    document.getElementById(cityName).classList.add("active");
+    if (evt && evt.currentTarget) {
+      evt.currentTarget.className += " active";
+    } else {
+      // fallback: add active to matching button
+      document.querySelector(`.tablinks[onclick*="${cityName}"]`)?.classList.add("active");
+    }
+  }
+
+  // set default open (Home) – exactly original behaviour
+  document.addEventListener("DOMContentLoaded", function() {
+    var defaultBtn = document.getElementById("defaultOpen");
+    if (defaultBtn) {
+      defaultBtn.click();
+    } else {
+      // fallback
+      var homePanel = document.getElementById("Home");
+      if (homePanel) {
+        homePanel.style.display = "block";
+        homePanel.classList.add("active");
+      }
+    }
+  });
+</script>
+
 </body>
 </html>

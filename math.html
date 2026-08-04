@@ -1,24 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML</title>
-</head>
-<body style="font-family: sans-serif;">
-    <header>
-                    <div class="tab">
-                <button><a href="index.html">Home</a></button>
-            
-            </div>
-    </header>
-    <main>
-        <h3>What is math?</h3>
-        <p style="text-align: justify;">Mathematics is the abstract science of numbers, quantity, space, and change. It uses logical reasoning and a specialized system of symbols to discover patterns, solve problems, and model real-world phenomena.</p>
-   
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math · Learning Roadmap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f0f4f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1a2a3a;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        .page-wrap { max-width: 1200px; width: 100%; }
+        .top-nav { margin-bottom: 2rem; }
+        .home-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.6); backdrop-filter: blur(4px);
+            padding: 0.5rem 1.6rem; border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.7);
+            text-decoration: none; font-weight: 500; color: #1d3344;
+            transition: 0.2s; font-size: 0.95rem;
+        }
+        .home-btn:hover { background: #1d2e3f; color: white; border-color: #1d2e3f; transform: translateY(-2px); }
+        .math-card {
+            background: rgba(255,255,255,0.75); backdrop-filter: blur(6px);
+            border-radius: 48px; padding: 2.8rem 3rem;
+            box-shadow: 0 30px 60px -20px rgba(0,20,40,0.20), 0 12px 28px -10px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; color: #1a2e3f; margin-bottom: 0.3rem; }
+        h1 span { background: linear-gradient(135deg, #1a2e3f, #4a7a9a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-size: 1.15rem; color: #3a5a6a; margin-bottom: 2.5rem; }
+        .subtitle strong { color: #1a2e3f; }
 
-        <section>  <script src="script.js"></script></section>
+        /* ROADMAP */
+        .roadmap {
+            display: flex; flex-direction: column; gap: 0;
+            position: relative; padding-left: 2.5rem;
+        }
+        .roadmap::before {
+            content: ''; position: absolute; left: 8px; top: 20px; bottom: 20px;
+            width: 4px; background: linear-gradient(to bottom, #1a2e3f, #4a7a9a, #b9731a, #b14a4a);
+            border-radius: 4px;
+        }
+        .roadmap-node {
+            position: relative; padding: 1.8rem 2rem 1.8rem 2.5rem;
+            border-radius: 28px; margin-bottom: 0.8rem;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: 0.3s;
+            cursor: default;
+        }
+        .roadmap-node:hover { background: rgba(255,255,255,0.85); transform: translateX(6px); box-shadow: 0 8px 30px -12px rgba(0,0,0,0.08); }
+        .roadmap-node::before {
+            content: ''; position: absolute; left: -2.1rem; top: 2.2rem;
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 4px solid white; box-shadow: 0 0 0 2px #1a2e3f;
+            background: #1a2e3f;
+        }
+        .roadmap-node .level-badge {
+            display: inline-block; font-size: 0.7rem; font-weight: 700;
+            padding: 0.2rem 0.9rem; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+        .level-basic { background: #2a7d5a; color: white; }
+        .level-intermediate { background: #b9731a; color: white; }
+        .level-advanced { background: #b14a4a; color: white; }
+        .roadmap-node h3 { font-size: 1.4rem; font-weight: 700; color: #1a2e3f; margin-bottom: 0.3rem; }
+        .roadmap-node .topics {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin: 0.6rem 0 0.8rem;
+        }
+        .roadmap-node .topic-tag {
+            background: rgba(29,46,63,0.06); padding: 0.15rem 0.9rem;
+            border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+            color: #1a2e3f; border: 1px solid rgba(29,46,63,0.04);
+        }
+        .roadmap-node .topic-tag.highlight { background: rgba(42,125,90,0.12); color: #1a6a4a; }
+        .roadmap-node p { color: #2a4a5a; font-size: 0.95rem; margin-top: 0.2rem; }
+        .roadmap-node .formula-mini {
+            background: rgba(29,46,63,0.04); padding: 0.4rem 1.2rem;
+            border-radius: 12px; display: inline-block; margin-top: 0.5rem;
+            font-size: 0.95rem; border-left: 3px solid #1a2e3f;
+        }
+        .roadmap-node .formula-mini .katex { font-size: 1rem; }
+
+        /* milestone colors */
+        .node-1::before { background: #2a7d5a; box-shadow: 0 0 0 2px #2a7d5a; }
+        .node-2::before { background: #3a8a6a; box-shadow: 0 0 0 2px #3a8a6a; }
+        .node-3::before { background: #b9731a; box-shadow: 0 0 0 2px #b9731a; }
+        .node-4::before { background: #b9731a; box-shadow: 0 0 0 2px #b9731a; }
+        .node-5::before { background: #b14a4a; box-shadow: 0 0 0 2px #b14a4a; }
+        .node-6::before { background: #8a3a3a; box-shadow: 0 0 0 2px #8a3a3a; }
+
+        /* visual stats */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.2rem; margin: 2rem 0 1.5rem;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.5); border-radius: 20px;
+            padding: 1.2rem 1rem; text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .stat-card .number { font-size: 2rem; font-weight: 800; color: #1a2e3f; }
+        .stat-card .label { font-size: 0.8rem; color: #4a6a7a; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+
+        .quote-box {
+            background: rgba(29,46,63,0.03); border-radius: 24px;
+            padding: 1.8rem 2.2rem; margin: 2rem 0 0.5rem;
+            border-left: 6px solid #1a2e3f;
+            font-style: italic; font-size: 1.1rem; color: #2a4a5a;
+        }
+        .quote-box strong { font-style: normal; color: #1a2e3f; }
+
+        .btn {
+            padding: 0.7rem 2.2rem; border-radius: 40px; border: none;
+            font-weight: 600; font-family: inherit; cursor: pointer;
+            transition: 0.2s; background: #1d2e3f; color: white; font-size: 1rem;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(20,40,60,0.25); }
+
+        @media (max-width: 680px) {
+            .math-card { padding: 1.8rem 1.2rem; }
+            h1 { font-size: 2rem; }
+            .roadmap { padding-left: 1.5rem; }
+            .roadmap-node { padding: 1.2rem 1.2rem 1.2rem 1.8rem; }
+            .roadmap-node::before { left: -1.5rem; top: 1.8rem; width: 14px; height: 14px; }
+            .roadmap::before { left: 4px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .quote-box { padding: 1.2rem 1.4rem; }
+        }
+
+        .katex-display { overflow-x: auto; overflow-y: hidden; }
+    </style>
+</head>
+<body>
+
+<div class="page-wrap">
+    <div class="top-nav"><a href="index.html" class="home-btn">← Home</a></div>
+    <main class="math-card">
+        <h1>📐 <span>Mathematics</span></h1>
+        <p class="subtitle">
+            A visual roadmap through the world of mathematics — from counting to calculus.
+            <strong>Every topic builds on the last.</strong>
+        </p>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card"><div class="number">6</div><div class="label">Stages</div></div>
+            <div class="stat-card"><div class="number">110+</div><div class="label">Topics</div></div>
+            <div class="stat-card"><div class="number">5</div><div class="label">Major Fields</div></div>
+            <div class="stat-card"><div class="number">∞</div><div class="label">Applications</div></div>
+        </div>
+
+        <!-- ROADMAP -->
+        <div class="roadmap">
+
+            <!-- STAGE 1: ARITHMETIC -->
+            <div class="roadmap-node node-1">
+                <span class="level-badge level-basic">Stage 1 · Foundation</span>
+                <h3>🧮 Arithmetic</h3>
+                <div class="topics">
+                    <span class="topic-tag highlight">Whole Numbers</span>
+                    <span class="topic-tag highlight">Addition &amp; Subtraction</span>
+                    <span class="topic-tag highlight">Multiplication &amp; Division</span>
+                    <span class="topic-tag">Fractions &amp; Decimals</span>
+                    <span class="topic-tag">Percentages</span>
+                    <span class="topic-tag">Ratios &amp; Proportions</span>
+                    <span class="topic-tag">Exponents &amp; Roots</span>
+                    <span class="topic-tag">Negative Numbers</span>
+                    <span class="topic-tag">Order of Operations</span>
+                    <span class="topic-tag">Prime Numbers</span>
+                    <span class="topic-tag">Scientific Notation</span>
+                    <span class="topic-tag">Number Systems</span>
+                </div>
+                <p>The language of numbers. Master the core operations that underpin all of mathematics. Build intuition for quantity, magnitude, and the relationships between numbers.</p>
+                <div class="formula-mini">
+                    \( a + b = c \) &nbsp;·&nbsp; \( a \times b = c \) &nbsp;·&nbsp; \( \frac{a}{b} = c \) &nbsp;·&nbsp; \( a^b \)
+                </div>
+            </div>
+
+            <!-- STAGE 2: PRE-ALGEBRA -->
+            <div class="roadmap-node node-2">
+                <span class="level-badge level-basic">Stage 2 · Transition</span>
+                <h3>🔢 Pre-Algebra</h3>
+                <div class="topics">
+                    <span class="topic-tag highlight">Variables &amp; Expressions</span>
+                    <span class="topic-tag highlight">Combining Like Terms</span>
+                    <span class="topic-tag">Distributive Property</span>
+                    <span class="topic-tag">Solving Simple Equations</span>
+                    <span class="topic-tag">Inequalities</span>
+                    <span class="topic-tag">Absolute Value</span>
+                    <span class="topic-tag">Graphing on Number Line</span>
+                    <span class="topic-tag">Word Problems</span>
+                    <span class="topic-tag">Measurement &amp; Conversions</span>
+                </div>
+                <p>The bridge between arithmetic and algebra. Learn to think in terms of unknowns, translate words into equations, and represent problems symbolically.</p>
+                <div class="formula-mini">
+                    \( 3x + 5 = 14 \) &nbsp;→&nbsp; \( x = 3 \) &nbsp;·&nbsp; \( 2(x + 3) = 2x + 6 \)
+                </div>
+            </div>
+
+            <!-- STAGE 3: ALGEBRA I -->
+            <div class="roadmap-node node-3">
+                <span class="level-badge level-intermediate">Stage 3 · Core</span>
+                <h3>📊 Algebra I</h3>
+                <div class="topics">
+                    <span class="topic-tag highlight">Linear Equations</span>
+                    <span class="topic-tag highlight">Graphing Lines</span>
+                    <span class="topic-tag highlight">Slope &amp; Intercepts</span>
+                    <span class="topic-tag">Systems of Equations</span>
+                    <span class="topic-tag">Polynomials</span>
+                    <span class="topic-tag">Factoring</span>
+                    <span class="topic-tag">Quadratic Equations</span>
+                    <span class="topic-tag">Quadratic Formula</span>
+                    <span class="topic-tag">Functions &amp; Notation</span>
+                    <span class="topic-tag">Exponents &amp; Radicals</span>
+                    <span class="topic-tag">Rational Expressions</span>
+                    <span class="topic-tag">Inequalities (advanced)</span>
+                </div>
+                <p>The heart of school mathematics. Learn to model real-world situations with equations, understand rates of change, and solve complex problems systematically.</p>
+                <div class="formula-mini">
+                    \( y = mx + b \) &nbsp;·&nbsp; \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \) &nbsp;·&nbsp; \( f(x) = x^2 \)
+                </div>
+            </div>
+
+            <!-- STAGE 4: GEOMETRY & TRIGONOMETRY -->
+            <div class="roadmap-node node-4">
+                <span class="level-badge level-intermediate">Stage 4 · Space &amp; Measurement</span>
+                <h3>📐 Geometry &amp; Trigonometry</h3>
+                <div class="topics">
+                    <span class="topic-tag highlight">Points, Lines, Angles</span>
+                    <span class="topic-tag highlight">Triangles &amp; Congruence</span>
+                    <span class="topic-tag">Similarity &amp; Proportions</span>
+                    <span class="topic-tag">Pythagorean Theorem</span>
+                    <span class="topic-tag">Special Right Triangles</span>
+                    <span class="topic-tag">Trigonometry (SOH CAH TOA)</span>
+                    <span class="topic-tag">Quadrilaterals &amp; Polygons</span>
+                    <span class="topic-tag">Circles &amp; Theorems</span>
+                    <span class="topic-tag">Perimeter, Area, Volume</span>
+                    <span class="topic-tag">Transformations</span>
+                    <span class="topic-tag">3D Geometry</span>
+                    <span class="topic-tag">Geometric Proofs</span>
+                </div>
+                <p>Understand the physical world around you. From the simplest triangle to the most complex 3D shapes — geometry is the mathematics of space.</p>
+                <div class="formula-mini">
+                    \( a^2 + b^2 = c^2 \) &nbsp;·&nbsp; \( \sin \theta = \frac{\text{opposite}}{\text{hypotenuse}} \) &nbsp;·&nbsp; \( A = \pi r^2 \)
+                </div>
+            </div>
+
+            <!-- STAGE 5: ALGEBRA II & STATISTICS -->
+            <div class="roadmap-node node-5">
+                <span class="level-badge level-intermediate">Stage 5 · Advanced Topics</span>
+                <h3>📈 Algebra II &amp; Statistics</h3>
+                <div class="topics">
+                    <span class="topic-tag highlight">Complex Numbers</span>
+                    <span class="topic-tag highlight">Polynomial Division</span>
+                    <span class="topic-tag">Rational &amp; Radical Equations</span>
+                    <span class="topic-tag">Exponential &amp; Log Functions</span>
+                    <span class="topic-tag">Sequences &amp; Series</span>
+                    <span class="topic-tag">Conic Sections</span>
+                    <span class="topic-tag">Probability</span>
+                    <span class="topic-tag">Permutations &amp; Combinations</span>
+                    <span class="topic-tag">Mean, Median, Mode</span>
+                    <span class="topic-tag">Standard Deviation</span>
+                    <span class="topic-tag">Normal Distribution</span>
+                    <span class="topic-tag">Data Analysis</span>
+                </div>
+                <p>Dive deeper into functions, explore the power of exponential growth, and learn to make sense of data with statistics and probability.</p>
+                <div class="formula-mini">
+                    \( f(x) = e^x \) &nbsp;·&nbsp; \( \log_a b = c \) &nbsp;·&nbsp; \( z = \frac{x - \mu}{\sigma} \) &nbsp;·&nbsp; \( \binom{n}{k} \)
+                </div>
+            </div>
+
+            <!-- STAGE 6: CALCULUS -->
+            <div class="roadmap-node node-6">
+                <span class="level-badge level-advanced">Stage 6 · The Summit</span>
+                <h3>🚀 Calculus</h3>
+                <div class="topics">
+                    <span class="topic-tag highlight">Limits &amp; Continuity</span>
+                    <span class="topic-tag highlight">Derivatives</span>
+                    <span class="topic-tag highlight">Integrals</span>
+                    <span class="topic-tag">Derivative Rules (Power, Product, Chain)</span>
+                    <span class="topic-tag">Applications: Optimization, Related Rates</span>
+                    <span class="topic-tag">Curve Sketching</span>
+                    <span class="topic-tag">Fundamental Theorem of Calculus</span>
+                    <span class="topic-tag">Area Under a Curve</span>
+                    <span class="topic-tag">Volume of Revolution</span>
+                    <span class="topic-tag">Integration Techniques</span>
+                    <span class="topic-tag">Differential Equations (intro)</span>
+                    <span class="topic-tag">Multivariable (preview)</span>
+                </div>
+                <p>The mathematics of change. Calculus unlocks the secrets of motion, growth, and optimization — the language of physics, engineering, and modern science.</p>
+                <div class="formula-mini">
+                    \( \frac{d}{dx} x^n = nx^{n-1} \) &nbsp;·&nbsp; \( \int x^n dx = \frac{x^{n+1}}{n+1} + C \) &nbsp;·&nbsp; \( \int_a^b f(x) dx \)
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Quote -->
+        <div class="quote-box">
+            <strong>“Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding.”</strong>
+            <br>— William Paul Thurston, Fields Medalist
+        </div>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+            <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Back to Top</button>
+            <button class="btn" style="background:#2a7d5a;" onclick="window.location.href='index.html'">🏠 Return Home</button>
+        </div>
+
+        <p style="text-align:center; margin-top:2.5rem; color:#4a6a7a; font-size:0.85rem;">
+            Every great mathematician started where you are now. Keep going.
+        </p>
+
+        <script>
+            // re-render KaTeX
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.renderMathInElement) {
+                    setTimeout(function() {
+                        renderMathInElement(document.body, {
+                            delimiters: [
+                                {left: '$$', right: '$$', display: true},
+                                {left: '\\(', right: '\\)', display: false},
+                                {left: '\\[', right: '\\]', display: true}
+                            ]
+                        });
+                    }, 200);
+                }
+            });
+        </script>
+
     </main>
+</div>
 </body>
 </html>
