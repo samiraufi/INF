@@ -1,211 +1,490 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HTML · professional</title>
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-  <style>
-    /* reset & base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML · professional</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #f0f4f9;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      padding: 2rem 1.5rem;
-      color: #1a2a3a;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #f0f4f9;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
 
-    .page-wrap {
-      max-width: 1100px;
-      width: 100%;
-    }
+        /* ----- DARK MODE ----- */
+        body.dark-mode {
+            background-color: #0d1a26;
+        }
 
-    /* top navigation bar */
-    .nav-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2rem;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      padding: 0.6rem 1.2rem;
-      border-radius: 60px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      align-items: center;
-    }
+        body.dark-mode .page-overlay {
+            background: rgba(13, 26, 38, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
 
-    .nav-btn {
-      background: transparent;
-      border: none;
-      padding: 0.4rem 1.4rem;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: #1d3344;
-      transition: 0.2s;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      border: 1px solid transparent;
-    }
+        body.dark-mode .html-card {
+            background: rgba(30, 50, 65, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(255, 255, 255, 0.08);
+            color: #e8edf2;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
 
-    .nav-btn:hover {
-      background: #1d2e3f;
-      color: white;
-      border-color: #1d2e3f;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px -8px rgba(20,40,60,0.15);
-    }
+        body.dark-mode .html-card h3 {
+            color: #e8edf2;
+        }
 
-    .nav-btn a {
-      text-decoration: none;
-      color: inherit;
-    }
+        body.dark-mode .html-card p {
+            color: #a0b8c8;
+        }
 
-    /* main card */
-    .html-card {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border-radius: 48px;
-      padding: 2.8rem 3rem;
-      box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.20),
-                  0 12px 28px -10px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
+        body.dark-mode .html-card .tags {
+            background: rgba(255, 255, 255, 0.06);
+            color: #b0d8e8;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
 
-    h3 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #1a2e3f;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
-    }
+        body.dark-mode .html-card .note-box {
+            background: rgba(255, 255, 255, 0.06);
+            border-left-color: #d4a373;
+        }
 
-    h3:first-of-type {
-      margin-top: 0;
-    }
+        body.dark-mode .html-card .note-box b {
+            color: #d4a373;
+        }
 
-    p {
-      margin-bottom: 1rem;
-      color: #1f3a4b;
-      text-align: justify;
-    }
+        body.dark-mode .html-card .img2 {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
 
-    .tags {
-      background: rgba(30, 47, 63, 0.07);
-      padding: 0.1rem 0.5rem;
-      border-radius: 6px;
-      font-family: 'SF Mono', 'Menlo', monospace;
-      font-size: 0.9em;
-      color: #1a3a4f;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
+        body.dark-mode .top-bar {
+            background: rgba(13, 26, 38, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
 
-    .img2 {
-      max-width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px -8px rgba(0,0,0,0.08);
-      margin: 1rem 0 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      display: block;
-    }
+        body.dark-mode .top-bar .logo {
+            color: #e8edf2;
+        }
 
-    /* note box */
-    .note-box {
-      background: #f7f3e8;
-      border-left: 5px solid #d4a373;
-      padding: 1.2rem 1.8rem;
-      border-radius: 20px;
-      margin: 1.5rem 0;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
-    }
+        body.dark-mode .top-bar .home-btn {
+            color: #e8edf2;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
 
-    .note-box p {
-      margin-bottom: 0;
-      font-weight: 400;
-    }
+        body.dark-mode .top-bar .home-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
 
-    .note-box b {
-      color: #a1621a;
-    }
+        body.dark-mode .top-bar .nav-btn {
+            color: #e8edf2;
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.04);
+        }
 
-    /* responsive */
-    @media (max-width: 680px) {
-      .html-card { padding: 1.8rem 1.2rem; }
-      h3 { font-size: 1.3rem; }
-      .nav-bar { padding: 0.4rem 0.8rem; border-radius: 40px; }
-      .nav-btn { padding: 0.3rem 1rem; font-size: 0.85rem; }
-    }
+        body.dark-mode .top-bar .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
 
-    /* keep original classes */
-  </style>
+        body.dark-mode .theme-toggle {
+            color: #e8edf2;
+        }
+
+        body.dark-mode .toggle-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode .toggle-thumb {
+            background: #4a8db7;
+            left: 22px;
+        }
+
+        /* ----- PAGE OVERLAY ----- */
+        .page-overlay {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            min-height: 100vh;
+            width: 100%;
+            transition: background 0.3s;
+            padding-top: 85px; /* space for fixed top bar */
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        /* ============================================
+           TOP BAR — FIXED AT TOP
+           ============================================ */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s, border-color 0.3s;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .top-bar .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b1a26;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            transition: color 0.3s;
+        }
+
+        .top-bar .logo span {
+            color: #4a8db7;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .top-bar .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            color: #0b1a26;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.25s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .top-bar .home-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .top-bar .nav-btn {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            color: #0b1a26;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.25s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .top-bar .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .top-bar .nav-btn a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Dark Mode Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0b1a26;
+            transition: color 0.3s;
+        }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            transition: 0.3s;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .toggle-thumb {
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .toggle-icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        /* ============================================
+           HTML CARD — GLASS EFFECT
+           ============================================ */
+        .html-card {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 2.8rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .html-card:hover {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-color: rgba(74, 141, 183, 0.15);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1a2e3f;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
+        }
+
+        h3:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #1f3a4b;
+            text-align: justify;
+            transition: color 0.3s;
+        }
+
+        .tags {
+            background: rgba(30, 47, 63, 0.07);
+            padding: 0.1rem 0.5rem;
+            border-radius: 6px;
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #1a3a4f;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .img2 {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px -8px rgba(0,0,0,0.08);
+            margin: 1rem 0 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: block;
+            transition: border-color 0.3s;
+        }
+
+        /* note box */
+        .note-box {
+            background: #f7f3e8;
+            border-left: 5px solid #d4a373;
+            padding: 1.2rem 1.8rem;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .note-box p {
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .note-box b {
+            color: #a1621a;
+            transition: color 0.3s;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .page-overlay { padding-top: 75px; }
+            .page-wrap { padding: 0 0.8rem 2rem; }
+            .html-card { padding: 1.8rem 1.2rem; }
+            h3 { font-size: 1.3rem; }
+            .top-bar { padding: 0.5rem 1rem; flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .top-bar-left { justify-content: space-between; width: 100%; }
+            .top-bar-right { justify-content: center; flex-wrap: wrap; }
+            .top-bar .home-btn, .top-bar .nav-btn { padding: 0.25rem 1rem; font-size: 0.8rem; }
+            .theme-toggle .toggle-label { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar-right { gap: 0.4rem; }
+            .top-bar .nav-btn { font-size: 0.75rem; padding: 0.2rem 0.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="page-wrap">
-  <!-- navigation – original buttons preserved -->
-  <div class="nav-bar">
-    <button class="nav-btn"><a href="index.html">Home</a></button>
-    <button class="nav-btn"><a href="ht_advanced.html">HTML_Advanced</a></button>
-  </div>
+<div class="page-overlay">
 
-  <main class="html-card">
-    <h3>What is html ?</h3>
-    <p>
-      HTML (HyperText Markup Language) is the standard markup language used to create and structure the content of web pages. It is the most basic building block of the World Wide Web, serving as the "skeleton" or framework that holds everything together.
-    </p>
+    <!-- ===== TOP BAR — FIXED ===== -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <a href="#" class="logo">🌐 <span>HTML</span></a>
+            <a href="index.html" class="home-btn">Home</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="ht_advanced.html" class="nav-btn">HTML_Advanced</a>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span class="toggle-icon" id="themeIcon">☀️</span>
+                <div class="toggle-track">
+                    <div class="toggle-thumb" id="toggleThumb"></div>
+                </div>
+                <span class="toggle-label" id="themeLabel">Light</span>
+            </div>
+        </div>
+    </header>
 
-    <img src="./html.png" alt="HTML logo" class="img2" style="max-width:280px;" />
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="page-wrap">
+        <main class="html-card">
+            <h3>What is html ?</h3>
+            <p>
+                HTML (HyperText Markup Language) is the standard markup language used to create and structure the content of web pages. It is the most basic building block of the World Wide Web, serving as the "skeleton" or framework that holds everything together.
+            </p>
 
-    <h3>A Simple HTML Document</h3>
-    <img src="./html_codes.png" alt="HTML code example" class="img2" />
+            <img src="./html.png" alt="HTML logo" class="img2" style="max-width:280px;" />
 
-    <h3>Example Explained:</h3>
-    <p>
-      The <span class="tags">&lt;!DOCTYPE html&gt;</span> declaration defines that this document is an HTML5 document. <br />
-      The <span class="tags">&lt;html&gt;</span> element is the root element of an HTML page.<br />
-      The <span class="tags">&lt;head&gt;</span> element contains meta information about the HTML page.<br />
-      The <span class="tags">&lt;title&gt;</span> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).<br />
-      The <span class="tags">&lt;body&gt;</span> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.<br />
-      The <span class="tags">&lt;h1&gt;</span> element defines a large heading.<br />
-      The <span class="tags">&lt;p&gt;</span> element defines a paragraph.
-    </p>
+            <h3>A Simple HTML Document</h3>
+            <img src="./html_codes.png" alt="HTML code example" class="img2" />
 
-    <h3>What is an HTML Element?</h3>
-    <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
-    <img src="./html_codes2.png" alt="HTML element diagram" class="img2" />
+            <h3>Example Explained:</h3>
+            <p>
+                The <span class="tags">&lt;!DOCTYPE html&gt;</span> declaration defines that this document is an HTML5 document. <br />
+                The <span class="tags">&lt;html&gt;</span> element is the root element of an HTML page.<br />
+                The <span class="tags">&lt;head&gt;</span> element contains meta information about the HTML page.<br />
+                The <span class="tags">&lt;title&gt;</span> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).<br />
+                The <span class="tags">&lt;body&gt;</span> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.<br />
+                The <span class="tags">&lt;h1&gt;</span> element defines a large heading.<br />
+                The <span class="tags">&lt;p&gt;</span> element defines a paragraph.
+            </p>
 
-    <div class="note-box">
-      <p><b>Note:</b> Some HTML elements have no content (like the &lt;br&gt; element). These elements are called empty elements. Empty elements do not have an end tag!</p>
+            <h3>What is an HTML Element?</h3>
+            <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
+            <img src="./html_codes2.png" alt="HTML element diagram" class="img2" />
+
+            <div class="note-box">
+                <p><b>Note:</b> Some HTML elements have no content (like the &lt;br&gt; element). These elements are called empty elements. Empty elements do not have an end tag!</p>
+            </div>
+
+            <h3>Web Browsers</h3>
+            <p>The purpose of a web browser (Chrome, Edge, Firefox, Safari) is to read HTML documents and display them correctly.</p>
+            <p>A browser does not display the HTML tags, but uses them to determine how to display the document:</p>
+            <img src="https://www.w3schools.com/html/img_chrome.png" class="img2" alt="Browser rendering example" style="max-width:500px;" />
+
+            <!-- script kept as original -->
+            <section><script src="script.js"></script></section>
+        </main>
     </div>
-
-    <h3>Web Browsers</h3>
-    <p>The purpose of a web browser (Chrome, Edge, Firefox, Safari) is to read HTML documents and display them correctly.</p>
-    <p>A browser does not display the HTML tags, but uses them to determine how to display the document:</p>
-    <img src="https://www.w3schools.com/html/img_chrome.png" class="img2" alt="Browser rendering example" style="max-width:500px;" />
-
-    <!-- script kept as original -->
-    <section><script src="script.js"></script></section>
-  </main>
 </div>
+
+<script>
+    // ===== DARK MODE TOGGLE =====
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('themeIcon');
+        const label = document.getElementById('themeLabel');
+        const thumb = document.getElementById('toggleThumb');
+
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            icon.textContent = '🌙';
+            label.textContent = 'Dark';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.textContent = '☀️';
+            label.textContent = 'Light';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeIcon').textContent = '🌙';
+            document.getElementById('themeLabel').textContent = 'Dark';
+        } else {
+            document.getElementById('themeIcon').textContent = '☀️';
+            document.getElementById('themeLabel').textContent = 'Light';
+        }
+    });
+</script>
 
 </body>
 </html>

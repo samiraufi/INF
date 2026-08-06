@@ -7,9 +7,9 @@
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* reset & base */
+        /* ----- RESET & BASE ----- */
         * {
             margin: 0;
             padding: 0;
@@ -17,62 +17,272 @@
         }
 
         body {
-            background: #f0f4f9;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            padding: 2rem 1.5rem;
-            color: #1a2a3a;
             line-height: 1.6;
             min-height: 100vh;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #f0f4f9;
+            padding: 0;
             display: flex;
             justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        /* ----- DARK MODE ----- */
+        body.dark-mode {
+            background-color: #0d1a26;
+        }
+
+        body.dark-mode .page-overlay {
+            background: rgba(13, 26, 38, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        body.dark-mode .inf-card {
+            background: rgba(30, 50, 65, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(255, 255, 255, 0.08);
+            color: #e8edf2;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .inf-card h3 {
+            color: #e8edf2;
+        }
+
+        body.dark-mode .inf-card p {
+            color: #a0b8c8;
+        }
+
+        body.dark-mode .inf-card .label-accent {
+            color: #d4a373;
+        }
+
+        body.dark-mode .inf-card .highlight-blue {
+            color: #7fc1d9;
+        }
+
+        body.dark-mode .inf-card .genius-box {
+            background: rgba(154, 134, 19, 0.3);
+            border-left-color: #d4a373;
+        }
+
+        body.dark-mode .inf-card .genius-box p {
+            color: #e8edf2;
+        }
+
+        body.dark-mode .inf-card .genius-box strong {
+            color: #f2d94c;
+        }
+
+        body.dark-mode .inf-card p[style*="background-color: #f0f0f0"] {
+            background-color: rgba(255, 255, 255, 0.06) !important;
+            color: #e8edf2;
+        }
+
+        body.dark-mode .inf-card .detail-link {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            color: #e8edf2;
+        }
+
+        body.dark-mode .inf-card .detail-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        body.dark-mode .top-bar {
+            background: rgba(13, 26, 38, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .top-bar .logo {
+            color: #e8edf2;
+        }
+
+        body.dark-mode .top-bar .home-btn {
+            color: #e8edf2;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode .top-bar .home-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark-mode .theme-toggle {
+            color: #e8edf2;
+        }
+
+        body.dark-mode .toggle-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode .toggle-thumb {
+            background: #4a8db7;
+            left: 22px;
+        }
+
+        /* ----- PAGE OVERLAY ----- */
+        .page-overlay {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            min-height: 100vh;
+            width: 100%;
+            transition: background 0.3s;
+            padding-top: 85px; /* space for fixed top bar */
         }
 
         .page-wrap {
             max-width: 1100px;
             width: 100%;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
         }
 
-        /* back / home button */
-        .top-nav {
-            margin-bottom: 2rem;
-        }
-
-        .home-btn {
-            display: inline-flex;
+        /* ============================================
+           TOP BAR — FIXED AT TOP
+           ============================================ */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            padding: 0.7rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s, border-color 0.3s;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            padding: 0.5rem 1.6rem;
-            border-radius: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .top-bar .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b1a26;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            transition: color 0.3s;
+        }
+
+        .top-bar .logo span {
+            color: #4a8db7;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .top-bar .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            color: #0b1a26;
             text-decoration: none;
             font-weight: 500;
-            color: #1d3344;
-            transition: 0.2s;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            transition: 0.25s;
+            display: inline-flex;
+            align-items: center;
         }
 
-        .home-btn:hover {
-            background: #1d2e3f;
-            color: white;
-            border-color: #1d2e3f;
+        .top-bar .home-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(20,40,60,0.2);
         }
 
-        /* main card */
+        /* Dark Mode Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0b1a26;
+            transition: color 0.3s;
+        }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            transition: 0.3s;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .toggle-thumb {
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .toggle-icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        /* ============================================
+           INF CARD — GLASS EFFECT
+           ============================================ */
         .inf-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border-radius: 48px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 40px;
             padding: 2.8rem 3rem;
-            box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.20),
-                        0 12px 28px -10px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .inf-card:hover {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-color: rgba(74, 141, 183, 0.15);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         h3 {
@@ -82,6 +292,7 @@
             color: #1a2e3f;
             margin-top: 2rem;
             margin-bottom: 0.75rem;
+            transition: color 0.3s;
         }
 
         h3:first-of-type {
@@ -92,16 +303,19 @@
             margin-bottom: 1rem;
             color: #1f3a4b;
             text-align: justify;
+            transition: color 0.3s;
         }
 
         .label-accent {
             color: #c45d09;
             font-weight: 600;
+            transition: color 0.3s;
         }
 
         .highlight-blue {
             color: #1560db;
             font-weight: 600;
+            transition: color 0.3s;
         }
 
         /* feature boxes for genius points */
@@ -114,16 +328,19 @@
             font-weight: 500;
             backdrop-filter: blur(2px);
             border-left: 4px solid #6b5c0a;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .genius-box p {
             margin-bottom: 0;
             color: #1a1f1a;
             text-align: justify;
+            transition: color 0.3s;
         }
 
         .genius-box strong {
             color: #2d2600;
+            transition: color 0.3s;
         }
 
         /* detail link */
@@ -149,63 +366,123 @@
         }
 
         /* responsive */
-        @media (max-width: 680px) {
+        @media (max-width: 768px) {
+            .page-overlay { padding-top: 75px; }
+            .page-wrap { padding: 0 0.8rem 2rem; }
             .inf-card { padding: 1.8rem 1.2rem; }
             h3 { font-size: 1.3rem; }
-            .home-btn { padding: 0.4rem 1.2rem; font-size: 0.9rem; }
             .genius-box { padding: 0.6rem 1rem; }
+            .top-bar { padding: 0.5rem 1rem; flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .top-bar-left { justify-content: space-between; width: 100%; }
+            .top-bar-right { justify-content: center; flex-wrap: wrap; }
+            .top-bar .home-btn { padding: 0.25rem 1rem; font-size: 0.8rem; }
+            .theme-toggle .toggle-label { display: none; }
         }
 
-        /* preserve original classes */
+        @media (max-width: 480px) {
+            .top-bar-right { gap: 0.4rem; }
+            .top-bar .home-btn { font-size: 0.75rem; padding: 0.2rem 0.8rem; }
+        }
     </style>
 </head>
 <body>
 
-<div class="page-wrap">
-    <!-- home button – original structure preserved -->
-    <div class="top-nav">
-        <a href="index.html" class="home-btn">← Home</a>
+<div class="page-overlay">
+
+    <!-- ===== TOP BAR — FIXED ===== -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <a href="#" class="logo">🧠 <span>INF</span></a>
+            <a href="index.html" class="home-btn">Home</a>
+        </div>
+        <div class="top-bar-right">
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span class="toggle-icon" id="themeIcon">☀️</span>
+                <div class="toggle-track">
+                    <div class="toggle-thumb" id="toggleThumb"></div>
+                </div>
+                <span class="toggle-label" id="themeLabel">Light</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="page-wrap">
+        <main class="inf-card">
+            <!-- INTELLIGENCE -->
+            <h3>What is Intelligence?</h3>
+            <p>
+                Intelligence is the ability to acquire and apply knowledge and skills. It encompasses various cognitive processes such as learning, reasoning, problem-solving, and decision-making. Intelligence can be measured through various tests and assessments, and it can manifest in different forms, including emotional intelligence, social intelligence, and practical intelligence.
+            </p>
+
+            <p class="label-accent">Psychologists and researchers divide intelligence into several core components:</p>
+
+            <p><span class="highlight-blue">Learning &amp; Memory:</span> The ability to acquire, retain, and recall information from past experiences.</p>
+            <p><span class="highlight-blue">Reasoning &amp; Problem-Solving:</span> Using logic to analyze situations, form strategies, and overcome obstacles.</p>
+            <p><span class="highlight-blue">Adaptability:</span> The capacity to adjust to unfamiliar contexts and apply existing knowledge to new situations.</p>
+            <p><span class="highlight-blue">Abstract Thinking:</span> The ability to understand complex concepts, symbols, and ideas that are not physically present.</p>
+
+            <!-- GENIUS -->
+            <h3>What is Genius?</h3>
+            <p>
+                Genius refers to an exceptional level of creative or intellectual ability that goes far beyond normal standards, leading to groundbreaking innovations or masterpieces.
+                Rather than just raw intelligence, it is defined by profound originality, intense drive, and the capacity to change how we understand the world.
+            </p>
+
+            <p style="background-color: #f0f0f0; padding: 0.4rem 1.2rem; border-radius: 12px; display: inline-block; font-weight: 600; transition: background-color 0.3s, color 0.3s;">Key aspects of genius include:</p>
+
+            <div class="genius-box">
+                <p><strong>Originality over Aptitude:</strong> While talent means learning a skill quickly, genius involves creating something entirely new, answering questions no one else has considered, or establishing new standards.</p>
+            </div>
+            <div class="genius-box">
+                <p><strong>Major Contributions:</strong> Psychologists often define a genius by their lasting legacy—making unique contributions that change a culturally valued domain like science, art, or mathematics.</p>
+            </div>
+            <div class="genius-box">
+                <p><strong>The IQ Factor:</strong> Historically, psychologists associated genius with an IQ Score of 140 or higher, placing individuals in the top 1% of the population. However, many experts agree that high persistence, creativity, and unconventional thinking are equally—if not more—important than test scores.</p>
+            </div>
+
+            <p><a href="https://en.wikipedia.org/wiki/Genius" class="detail-link" target="_blank">more details →</a></p>
+
+            <!-- script kept as original -->
+            <section><script src="script.js"></script></section>
+        </main>
     </div>
-
-    <main class="inf-card">
-        <!-- INTELLIGENCE -->
-        <h3>What is Intelligence?</h3>
-        <p>
-            Intelligence is the ability to acquire and apply knowledge and skills. It encompasses various cognitive processes such as learning, reasoning, problem-solving, and decision-making. Intelligence can be measured through various tests and assessments, and it can manifest in different forms, including emotional intelligence, social intelligence, and practical intelligence.
-        </p>
-
-        <p class="label-accent">Psychologists and researchers divide intelligence into several core components:</p>
-
-        <p><span class="highlight-blue">Learning &amp; Memory:</span> The ability to acquire, retain, and recall information from past experiences.</p>
-        <p><span class="highlight-blue">Reasoning &amp; Problem-Solving:</span> Using logic to analyze situations, form strategies, and overcome obstacles.</p>
-        <p><span class="highlight-blue">Adaptability:</span> The capacity to adjust to unfamiliar contexts and apply existing knowledge to new situations.</p>
-        <p><span class="highlight-blue">Abstract Thinking:</span> The ability to understand complex concepts, symbols, and ideas that are not physically present.</p>
-
-        <!-- GENIUS -->
-        <h3>What is Genius?</h3>
-        <p>
-            Genius refers to an exceptional level of creative or intellectual ability that goes far beyond normal standards, leading to groundbreaking innovations or masterpieces.
-            Rather than just raw intelligence, it is defined by profound originality, intense drive, and the capacity to change how we understand the world.
-        </p>
-
-        <p style="background-color: #f0f0f0; padding: 0.4rem 1.2rem; border-radius: 12px; display: inline-block; font-weight: 600;">Key aspects of genius include:</p>
-
-        <div class="genius-box">
-            <p><strong>Originality over Aptitude:</strong> While talent means learning a skill quickly, genius involves creating something entirely new, answering questions no one else has considered, or establishing new standards.</p>
-        </div>
-        <div class="genius-box">
-            <p><strong>Major Contributions:</strong> Psychologists often define a genius by their lasting legacy—making unique contributions that change a culturally valued domain like science, art, or mathematics.</p>
-        </div>
-        <div class="genius-box">
-            <p><strong>The IQ Factor:</strong> Historically, psychologists associated genius with an IQ Score of 140 or higher, placing individuals in the top 1% of the population. However, many experts agree that high persistence, creativity, and unconventional thinking are equally—if not more—important than test scores.</p>
-        </div>
-
-        <p><a href="https://en.wikipedia.org/wiki/Genius" class="detail-link" target="_blank">more details →</a></p>
-
-        <!-- script kept as original -->
-        <section><script src="script.js"></script></section>
-    </main>
 </div>
+
+<script>
+    // ===== DARK MODE TOGGLE =====
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('themeIcon');
+        const label = document.getElementById('themeLabel');
+        const thumb = document.getElementById('toggleThumb');
+
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            icon.textContent = '🌙';
+            label.textContent = 'Dark';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.textContent = '☀️';
+            label.textContent = 'Light';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeIcon').textContent = '🌙';
+            document.getElementById('themeLabel').textContent = 'Dark';
+        } else {
+            document.getElementById('themeIcon').textContent = '☀️';
+            document.getElementById('themeLabel').textContent = 'Light';
+        }
+    });
+</script>
 
 </body>
 </html>
